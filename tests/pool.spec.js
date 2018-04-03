@@ -2,6 +2,12 @@ import reducer, { getInitialState} from '../src/reducers/pool'
 import {addCombo} from '../src/actions'
 
 describe('pool reducer', () => {
+  test('initial state', () => {
+    expect(getInitialState()).toEqual({
+      combos: {},
+      totals: {},
+    })
+  })
   it('should return the initial state', () => {
     expect(
       reducer(undefined, {})
