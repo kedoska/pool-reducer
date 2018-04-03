@@ -1,5 +1,5 @@
 import reducer, { getInitialState} from '../src/reducers/pool'
-import {addCombo} from '../src/actions'
+import {addCombo, setMax} from '../src/actions'
 
 const dispatchAndLog = (reducer, initialState, action) => {
   console.log('dispatching', action)
@@ -13,7 +13,8 @@ describe('pool reducer', () => {
     expect(getInitialState()).toEqual({
       combos: {},
       totals: {
-        quantity: 0
+        quantity: 0,
+        max: 0
       },
     })
   })
@@ -21,6 +22,11 @@ describe('pool reducer', () => {
     expect(
       reducer(undefined, {})
     ).toEqual(getInitialState())
+  })
+  it('should handle SET_MAX', () => {
+    const MAX = 10000
+    const { totals } = dispatchAndLog(reducer, undefined, setMax(MAX))
+    expect(totals).toHaveProperty('max', MAX)
   })
   it('should handle ADD_COMBO', () => {
     const symbol = 'X'

@@ -1,4 +1,7 @@
-import { ADD_COMBO } from './types'
+import {
+  ADD_COMBO,
+  SET_MAX
+} from './types'
 
 export const addCombo = (symbol, instances, value) => ({
   type: ADD_COMBO,
@@ -7,4 +10,9 @@ export const addCombo = (symbol, instances, value) => ({
     instances,
     value
   }
+})
+
+export const setMax = (max) => ({
+  type: SET_MAX,
+  max
 })
