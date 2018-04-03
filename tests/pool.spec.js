@@ -1,6 +1,13 @@
 import reducer, { getInitialState} from '../src/reducers/pool'
 import {addCombo} from '../src/actions'
 
+const dispatchAndLog = (reducer, initialState, action) => {
+  console.log('dispatching', action)
+  const state = reducer(initialState, action)
+  console.log('next state', state)
+  return state
+}
+
 describe('pool reducer', () => {
   test('initial state', () => {
     expect(getInitialState()).toEqual({
@@ -17,7 +24,7 @@ describe('pool reducer', () => {
     const symbol = 'X'
     const instances = 1
     const value = 0
-    const { combos } = reducer(undefined, addCombo(symbol, 1, 0))
+    const { totals, combos } = dispatchAndLog(reducer, undefined, addCombo(symbol, 1, 0))
     expect(combos).toHaveProperty(symbol, {instances, value})
   })
 })
