@@ -12,7 +12,9 @@ describe('pool reducer', () => {
   test('initial state', () => {
     expect(getInitialState()).toEqual({
       combos: {},
-      totals: {},
+      totals: {
+        quantity: 0
+      },
     })
   })
   it('should return the initial state', () => {
@@ -26,5 +28,6 @@ describe('pool reducer', () => {
     const value = 0
     const { totals, combos } = dispatchAndLog(reducer, undefined, addCombo(symbol, 1, 0))
     expect(combos).toHaveProperty(symbol, {instances, value})
+    expect(totals).toHaveProperty('quantity', instances)
   })
 })
